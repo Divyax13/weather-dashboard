@@ -12,6 +12,20 @@ searchBtn.addEventListener('click', getWeather);
 cityInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         getWeather();
+        function showLoading() {
+    weatherDisplay.innerHTML = `
+        <div class="weather-card">
+            <h3>🔄 Loading weather data...</h3>
+        </div>
+    `;
+}
+
+// Add in getWeather before try block:
+function getWeather() {
+    // ... existing code ...
+    showLoading(); // Add this line
+    // ... rest of code ...
+}
     }
 });
 
