@@ -1,3 +1,37 @@
+ // Add at top of script.js
+let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+
+// Add after displayWeather function
+function saveSearch(city) {
+    if (!recentSearches.includes(city)) {
+        recentSearches.unshift(city);
+        if (recentSearches.length > 5) {
+            recentSearches.pop();
+        }
+        localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+        displayRecentSearches();
+    }
+}
+
+function displayRecentSearches() {
+    if (recentSearches.length === 0) return;
+    
+    const html = `
+        <div class="recent-searches">
+            <h4>Recent Searches:</h4>
+            ${recentSearches.map(city => 
+                `<button onclick="searchCity('${city}')">${city}</button>`
+            ).join('')}
+        </div>
+    `;
+    // Add this below search box in HTML
+}
+
+// Add new function
+function searchCity(city) {
+    cityInput.value = city;
+    getWeather();
+}
  // DOM Elements
 const cityInput = document.getElementById('cityInput');
 const searchBtn = document.getElementById('searchBtn');
