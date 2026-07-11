@@ -117,3 +117,58 @@ h1 {
     font-size: 20px;
     color: #333;
 }
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .search-box {
+        flex-direction: column;
+    }
+    
+    .details {
+        grid-template-columns: 1fr;
+    }
+    
+    .temperature {
+        font-size: 36px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.weather-card {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Recent Searches */
+.recent-searches {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.recent-searches h4 {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.recent-searches button {
+    background: #f0f0f0;
+    border: none;
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.recent-searches button:hover {
+    background: #667eea;
+    color: white;
+}
