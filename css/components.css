@@ -57,3 +57,49 @@
 .unit-option:hover {
     transform: scale(1.05);
 }
+/* Weather Map */
+#weatherMap {
+    position: relative;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+#mapCanvas {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.map-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.map-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: var(--bg-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.map-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.map-btn:hover {
+    transform: scale(1.05);
+}
+
+.map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px;
+    font-size: 0.9rem;
+}
