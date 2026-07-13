@@ -227,3 +227,21 @@ body {
 }
 
 .flash { position: absolute; inset: 0; background: #fff; opacity: 0; animation: flash 6s ease-in-out infinite; }
+
+.icon-sun-group { transform-origin: 32px 32px; animation: spin 22s linear infinite; }
+.icon-cloud { animation: bob 4s ease-in-out infinite; }
+.icon-rain-drop { animation: dropFall 1s linear infinite; }
+.icon-rain-drop:nth-child(2) { animation-delay: 0.3s; }
+.icon-rain-drop:nth-child(3) { animation-delay: 0.6s; }
+.icon-snow-dot { animation: snowSpin 2.4s linear infinite; }
+.icon-snow-dot:nth-child(2) { animation-delay: 0.5s; }
+.icon-snow-dot:nth-child(3) { animation-delay: 1s; }
+.icon-bolt { animation: boltFlicker 2s ease-in-out infinite; transform-origin: center; }
+.icon-mist-line { animation: driftMist 3s ease-in-out infinite; }
+.icon-mist-line:nth-child(2) { animation-delay: 0.4s; }
+.icon-mist-line:nth-child(3) { animation-delay: 0.8s; }
+
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes dropFall { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
+@keyframes snowSpin { 0% { transform: translateY(0) rotate(0); opacity: 0.4; } 50% { opacity: 1; } 100% { transform: translateY(10px) rotate(180deg); opacity: 0.4; } }
+@keyframes boltFlicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
