@@ -137,3 +137,36 @@ body {
 .wc-temp { font-family: var(--font-display); font-size: 56px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
 .wc-city { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-top: 6px; }
 .wc-desc { color: var(--ink-dim); text-transform: capitalize; font-size: 14px; margin-top: 2px; }
+
+.wc-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.detail-item {
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  padding: 12px 8px;
+}
+.detail-item .label {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-dim);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.detail-item .value { font-family: var(--font-display); font-size: 17px; font-weight: 600; }
+
+.sun-times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--glass-border);
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.sun-times span strong { color: var(--ink); font-weight: 600; }
