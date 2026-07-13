@@ -209,3 +209,21 @@ body {
 }
 .stars { position: absolute; inset: 0; }
 .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: twinkle 3s ease-in-out infinite; }
+
+.cloud { position: absolute; opacity: 0.9; animation: drift 60s linear infinite; }
+.cloud svg { display: block; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15)); }
+
+.raindrop {
+  position: absolute; width: 2px; height: 16px;
+  background: linear-gradient(180deg, rgba(180,210,255,0), rgba(180,210,255,0.85));
+  border-radius: 2px; animation: fall linear infinite;
+}
+
+.snowflake { position: absolute; border-radius: 50%; background: #fff; opacity: 0.85; animation: snowfall linear infinite; }
+
+.mist-line {
+  position: absolute; height: 10px; border-radius: 10px;
+  background: rgba(255,255,255,0.35); filter: blur(6px); animation: driftMist 12s ease-in-out infinite;
+}
+
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; animation: flash 6s ease-in-out infinite; }
