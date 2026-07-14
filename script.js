@@ -21,3 +21,31 @@ const recentSearchesEl = document.getElementById("recentSearches");
 const sky = document.getElementById("sky");
 const celestial = document.getElementById("celestial");
 const particles = document.getElementById("particles");
+
+// ---------- Init ----------
+unitToggle.textContent = unit === "metric" ? "°C" : "°F";
+renderRecentSearches();
+
+// ---------- Event listeners ----------
+searchBtn.addEventListener("click", () => {
+  const city = cityInput.value.trim();
+  if (!city) return;
+  fetchByCity(city);
+});
+
+cityInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    const city = cityInput.value.trim();
+    if (city) fetchByCity(city);
+  }
+});
+
+locateBtn.addEventListener("click", useMyLocation);
+
+unitToggle.addEventListener("click", () => {
+  unit = unit === "metric" ? "imperial" : "metric";
+  localStorage.setItem("unit", unit);
+  unitToggle.textContent = unit === "metric" ? "°C" : "°F";
+  if (lastCurrentData) renderWeather(lastCurrentData);
+  if (lastForecastData) renderForecast(lastForecastData);
+});
