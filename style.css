@@ -245,3 +245,22 @@ body {
 @keyframes dropFall { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
 @keyframes snowSpin { 0% { transform: translateY(0) rotate(0); opacity: 0.4; } 50% { opacity: 1; } 100% { transform: translateY(10px) rotate(180deg); opacity: 0.4; } }
 @keyframes boltFlicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+
+.skeleton { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 10px 0; }
+.skel-block {
+  background: linear-gradient(90deg, rgba(255,255,255,0.08) 25%, rgba(255,255,255,0.18) 37%, rgba(255,255,255,0.08) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+.error-card { text-align: center; padding: 12px 0; color: var(--danger); }
+.error-card .error-title { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.error-card .error-sub { color: var(--ink-dim); font-size: 13px; margin-top: 4px; }
+.retry-btn {
+  margin-top: 14px; background: rgba(255,255,255,0.14); border: 1px solid var(--glass-border);
+  color: var(--ink); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-size: 13px; font-family: var(--font-body);
+}
+.retry-btn:hover { background: rgba(255,255,255,0.25); }
