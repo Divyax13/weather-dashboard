@@ -224,3 +224,24 @@ function renderForecast(forecastData) {
     })
     .join("");
 }
+// ---------- Recent searches ----------
+function saveSearch(city) {
+  recentSearches = recentSearches.filter((c) => c.toLowerCase() !== city.toLowerCase());
+  recentSearches.unshift(city);
+  if (recentSearches.length > 5) recentSearches.pop();
+  localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  renderRecentSearches();
+}
+
+function renderRecentSearches() {
+  recentSearchesEl.innerHTML = recentSearches
+    .map((city) => `<button class="chip" data-city="${escapeHTML(city)}">${escapeHTML(city)}</button>`)
+    .join("");
+
+  recentSearchesEl.querySelectorAll(".chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      cityInput.value = btn.dataset.city;
+      fetchByCity(btn.dataset.city);
+    });
+  });
+}
