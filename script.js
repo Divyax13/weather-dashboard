@@ -371,3 +371,112 @@ function cloudSVG(size) {
     </svg>
   `;
 }
+// ---------- Weather condition icon (card + forecast) ----------
+function weatherIconSVG(condition, isDay) {
+  iconCounter++;
+  const id = iconCounter;
+
+  const rainGroup = ["Rain", "Drizzle"];
+  const mistGroup = ["Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squall", "Tornado"];
+
+  if (condition === "Clear") return isDay ? sunIcon() : moonIcon(id);
+  if (condition === "Clouds") return cloudIcon();
+  if (rainGroup.includes(condition)) return rainIcon();
+  if (condition === "Thunderstorm") return thunderIcon();
+  if (condition === "Snow") return snowIcon();
+  if (mistGroup.includes(condition)) return mistIcon();
+  return cloudIcon();
+}
+
+function sunIcon() {
+  return `
+    <svg viewBox="0 0 64 64" width="100%" height="100%">
+      <g class="icon-sun-group">
+        <circle cx="32" cy="32" r="13" fill="#ffd35c"/>
+        ${Array.from({ length: 8 })
+          .map((_, i) => {
+            const angle = i * 45;
+            return `<line x1="32" y1="32" x2="32" y2="10" stroke="#ffd35c" stroke-width="3" stroke-linecap="round" transform="rotate(${angle} 32 32)"/>`;
+          })
+          .join("")}
+      </g>
+    </svg>
+  `;
+}
+
+function moonIcon(id) {
+  return `
+    <svg viewBox="0 0 64 64" width="100%" height="100%">
+      <mask id="moonMask-${id}">
+        <rect width="64" height="64" fill="#fff"/>
+        <circle cx="40" cy="24" r="16" fill="#000"/>
+      </mask>
+      <circle cx="32" cy="32" r="18" fill="#e8ecf5" mask="url(#moonMask-${id})"/>
+    </svg>
+  `;
+}
+
+function cloudIcon() {
+  return `
+    <svg viewBox="0 0 64 64" width="100%" height="100%">
+      <g class="icon-cloud">
+        <ellipse cx="24" cy="38" rx="14" ry="11" fill="#f4f8ff"/>
+        <ellipse cx="38" cy="32" rx="17" ry="15" fill="#f4f8ff"/>
+        <rect x="15" y="36" width="38" height="14" rx="7" fill="#f4f8ff"/>
+      </g>
+    </svg>
+  `;
+}
+
+function rainIcon() {
+  return `
+    <svg viewBox="0 0 64 64" width="100%" height="100%">
+      <g class="icon-cloud">
+        <ellipse cx="24" cy="26" rx="14" ry="10" fill="#f4f8ff"/>
+        <ellipse cx="38" cy="21" rx="16" ry="13" fill="#f4f8ff"/>
+        <rect x="15" y="24" width="36" height="13" rx="6.5" fill="#f4f8ff"/>
+      </g>
+      <line class="icon-rain-drop" x1="24" y1="46" x2="21" y2="54" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+      <line class="icon-rain-drop" x1="34" y1="46" x2="31" y2="54" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+      <line class="icon-rain-drop" x1="44" y1="46" x2="41" y2="54" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  `;
+}
+
+function thunderIcon() {
+  return `
+    <svg viewBox="0 0 64 64" width="100%" height="100%">
+      <g>
+        <ellipse cx="24" cy="24" rx="14" ry="10" fill="#f4f8ff"/>
+        <ellipse cx="38" cy="19" rx="16" ry="13" fill="#f4f8ff"/>
+        <rect x="15" y="22" width="36" height="13" rx="6.5" fill="#f4f8ff"/>
+      </g>
+      <polygon class="icon-bolt" points="34,36 24,52 32,52 28,60 42,42 34,42" fill="#ffd35c"/>
+    </svg>
+  `;
+}
+
+function snowIcon() {
+  return `
+    <svg viewBox="0 0 64 64" width="100%" height="100%">
+      <g class="icon-cloud">
+        <ellipse cx="24" cy="24" rx="14" ry="10" fill="#f4f8ff"/>
+        <ellipse cx="38" cy="19" rx="16" ry="13" fill="#f4f8ff"/>
+        <rect x="15" y="22" width="36" height="13" rx="6.5" fill="#f4f8ff"/>
+      </g>
+      <circle class="icon-snow-dot" cx="24" cy="48" r="2.6" fill="#dceeff"/>
+      <circle class="icon-snow-dot" cx="34" cy="50" r="2.6" fill="#dceeff"/>
+      <circle class="icon-snow-dot" cx="44" cy="48" r="2.6" fill="#dceeff"/>
+    </svg>
+  `;
+}
+
+function mistIcon() {
+  return `
+    <svg viewBox="0 0 64 64" width="100%" height="100%">
+      <line class="icon-mist-line" x1="12" y1="24" x2="52" y2="24" stroke="#dbe4f0" stroke-width="4" stroke-linecap="round"/>
+      <line class="icon-mist-line" x1="12" y1="34" x2="52" y2="34" stroke="#dbe4f0" stroke-width="4" stroke-linecap="round"/>
+      <line class="icon-mist-line" x1="12" y1="44" x2="52" y2="44" stroke="#dbe4f0" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  `;
+}
