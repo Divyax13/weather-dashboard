@@ -190,3 +190,37 @@ function renderWeather(data) {
 
   updateSky(condition, isDay);
 }
+// ---------- Rendering: 5-day forecast ----------
+function renderForecast(forecastData) {
+  const dailyMap = {};
+
+  forecastData.list.forEach((entry) => {
+    const date = entry.dt_txt.split(" ")[0];
+    if (!dailyMap[date]) dailyMap[date] = [];
+    dailyMap[date].push(entry);
+  });
+
+  const days = Object.keys(dailyMap).slice(0, 5);
+
+  forecastDisplay.innerHTML = days
+    .map((date, i) => {
+      const entries = dailyMap[date];
+      const midday = entries.reduce((best, e) => {
+        const hour = Number(e.dt_txt.split(" ")[1].split(":")[0]);
+        const bestHour = Number(best.dt_txt.split(" ")[1].split(":")[0]);
+        return Math.abs(hour - 12) < Math.abs(bestHour - 12) ? e : best;
+      });
+      const high = Math.round(Math.max(...entries.map((e) => e.main.temp_max)));
+      const low = Math.round(Math.min(...entries.map((e) => e.main.temp_min)));
+      const label = i === 0 ? "Today" : new Date(date).toLocaleDateString(undefined, { weekday: "short" });
+
+      return `
+        <div class="forecast-card">
+          <div class="forecast-day">${label}</div>
+          <div class="forecast-icon">${weatherIconSVG(midday.weather[0].main, true)}</div>
+          <div class="forecast-temps">${convertTemp(high)}°<span class="low">${convertTemp(low)}°</span></div>
+        </div>
+      `;
+    })
+    .join("");
+}
