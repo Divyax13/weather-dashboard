@@ -268,11 +268,37 @@ body {
 .recent-searches:empty { display: none; }
 
 .chip {
-  font-family: var(--font-body); font-size: 13px; background: rgba(255,255,255,0.10);
-  border: 1px solid var(--glass-border); color: var(--ink-dim); padding: 6px 14px;
-  border-radius: 999px; cursor: pointer; transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  transition: all 0.15s ease;
 }
-.chip:hover { background: rgba(255,255,255,0.2); color: var(--ink); }
+.chip:hover { background: rgba(255,255,255,0.2); }
+
+.chip-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  padding: 6px 4px 6px 14px;
+  cursor: pointer;
+}
+.chip:hover .chip-label { color: var(--ink); }
+
+.chip-remove {
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  font-size: 11px;
+  padding: 4px 10px 4px 2px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.chip-remove:hover { opacity: 1; color: var(--danger); }
 
 .forecast-display { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
 .forecast-display:empty { display: none; }
