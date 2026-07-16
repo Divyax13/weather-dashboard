@@ -152,7 +152,7 @@ function showError({ message }, retryFn) {
 }
 // ---------- Rendering: current weather ----------
 function renderWeather(data) {
-  const { name, main, weather, wind, sys, dt } = data;
+  const { name, main, weather, wind, sys, dt, timezone } = data;
   const condition = weather[0].main;
   const description = weather[0].description;
   const isDay = dt > sys.sunrise && dt < sys.sunset;
@@ -167,6 +167,7 @@ function renderWeather(data) {
       <div class="wc-temp">${temp}°</div>
       <div class="wc-city">${escapeHTML(name)}</div>
       <div class="wc-desc">${escapeHTML(description)}</div>
+      <div class="wc-localtime">${getLocalTime(dt, timezone)}</div>
       <div class="wc-details">
         <div class="detail-item">
           <span class="label">Feels like</span>
@@ -497,4 +498,12 @@ function escapeHTML(str) {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
+}
+function getLocalTime(dt, timezoneOffsetSeconds) {
+  const localMs = (dt + timezoneOffsetSeconds) * 1000;
+  return new Date(localMs).toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "UTC",
+  });
 }
