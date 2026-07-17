@@ -334,3 +334,19 @@ button:focus-visible, input:focus-visible {
   color: var(--ink-dim);
   margin-top: 4px;
 }
+.recent-searches-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.text-btn {
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.text-btn:hover { color: var(--danger); }
