@@ -2,6 +2,7 @@
 const API_KEY = CONFIG.API_KEY;
 const CURRENT_URL = "https://api.openweathermap.org/data/2.5/weather";
 const FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast";
+const AIR_QUALITY_URL = "https://api.openweathermap.org/data/2.5/air_pollution";
 
 // ---------- State ----------
 let unit = localStorage.getItem("unit") || "metric";
@@ -103,6 +104,16 @@ function handleSuccess(current, forecast) {
   renderWeather(current);
   renderForecast(forecast);
   updateFooterTimestamp();
+  fetchAirQuality(current.coord.lat, current.coord.lon);
+}
+
+async function fetchAirQuality(lat, lon) {
+  try {
+    const data = await fetchJSON(`${AIR_QUALITY_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`);
+    renderAirQuality(data);
+  } catch (err) {
+    // Air quality is a bonus feature — fail silently if it's unavailable
+  }
 }
 
 function useMyLocation() {
