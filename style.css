@@ -350,3 +350,9 @@ button:focus-visible, input:focus-visible {
   white-space: nowrap;
 }
 .text-btn:hover { color: var(--danger); }
+.aqi-badge {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.aqi-badge strong { font-family: var(--font-display); }
