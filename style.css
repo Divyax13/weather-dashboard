@@ -356,3 +356,16 @@ button:focus-visible, input:focus-visible {
   color: var(--ink-dim);
 }
 .aqi-badge strong { font-family: var(--font-display); }
+@media print {
+  .sky, .search-box, .recent-searches-row, .forecast-display,
+  .icon-btn, .unit-toggle, .app-footer, .text-btn {
+    display: none !important;
+  }
+  body { background: white; color: black; padding: 20px; }
+  .weather-display {
+    background: white;
+    border: 1px solid #ccc;
+    backdrop-filter: none;
+  }
+  .wc-city, .wc-temp { color: black; }
+}
