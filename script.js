@@ -613,3 +613,10 @@ themeToggle.addEventListener("click", () => {
   themeToggle.textContent = isLight ? "☀️" : "🌙";
   localStorage.setItem("theme", isLight ? "light" : "dark");
 });
+// ---------- Keyboard shortcut: "/" focuses search ----------
+document.addEventListener("keydown", (e) => {
+  if (e.key === "/" && document.activeElement !== cityInput) {
+    e.preventDefault();
+    cityInput.focus();
+  }
+});
