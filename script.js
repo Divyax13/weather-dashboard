@@ -601,3 +601,15 @@ setInterval(() => {
   const { lat, lon } = lastCurrentData.coord;
   fetchByCoords(lat, lon);
 }, 10 * 60 * 1000);
+// ---------- Theme toggle ----------
+const themeToggle = document.getElementById("themeToggle");
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+  themeToggle.textContent = "☀️";
+}
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  const isLight = document.body.classList.contains("light-mode");
+  themeToggle.textContent = isLight ? "☀️" : "🌙";
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+});
