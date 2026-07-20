@@ -626,3 +626,7 @@ document.addEventListener("keydown", (e) => {
 window.addEventListener("offline", () => {
   showError({ message: "OFFLINE" }, null);
 });
+// ---------- Scroll to top on new search ----------
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
