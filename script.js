@@ -1,3 +1,9 @@
+/**
+ * Skyline — Weather Dashboard
+ * Vanilla JS weather app using the OpenWeatherMap API.
+ * Sections: fetching, rendering, sky theming, icons, and helpers.
+ */
+
 // ---------- Config & constants ----------
 const API_KEY = CONFIG.API_KEY;
 const CURRENT_URL = "https://api.openweathermap.org/data/2.5/weather";
