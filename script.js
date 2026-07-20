@@ -299,25 +299,21 @@ function removeSearch(city) {
   renderRecentSearches();
 }
 // ---------- Dynamic sky background ----------
-function updateSky(condition, isDay) {
-  const themes = {
-    Clear: isDay
-      ? "linear-gradient(180deg, #4a90d9 0%, #87ceeb 45%, #ffe5a8 100%)"
-      : "linear-gradient(180deg, #0b1120 0%, #131c31 55%, #1b2a4a 100%)",
-    Clouds: isDay
-      ? "linear-gradient(180deg, #7f97b3 0%, #c9d3de 100%)"
-      : "linear-gradient(180deg, #1e2634 0%, #38455a 100%)",
-    Rain: isDay
-      ? "linear-gradient(180deg, #4a5f72 0%, #6c8296 100%)"
-      : "linear-gradient(180deg, #0e161d 0%, #202f3b 100%)",
-    Drizzle: isDay
-      ? "linear-gradient(180deg, #5a7184 0%, #7c95a8 100%)"
-      : "linear-gradient(180deg, #101c24 0%, #23333f 100%)",
-    Thunderstorm: "linear-gradient(180deg, #1e1b2e 0%, #362f4d 100%)",
-    Snow: isDay
-      ? "linear-gradient(180deg, #c9d9e8 0%, #eef4f9 100%)"
-      : "linear-gradient(180deg, #1c2534 0%, #2f3f56 100%)",
+function updateFavicon(condition, isDay) {
+  const emojiMap = {
+    Clear: isDay ? "☀️" : "🌙",
+    Clouds: "☁️", Rain: "🌧️", Drizzle: "🌦️",
+    Thunderstorm: "⛈️", Snow: "❄️",
   };
+  const emoji = emojiMap[condition] || "🌤️";
+  const link = document.querySelector("link[rel='icon']") || document.createElement("link");
+  link.rel = "icon";
+  link.href = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`;
+  document.head.appendChild(link);
+}
+
+function updateSky(condition, isDay) {
+  updateFavicon(condition, isDay);
   const mistGroup = ["Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squall", "Tornado"];
 
   let gradient;
