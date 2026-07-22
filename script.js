@@ -630,3 +630,9 @@ window.addEventListener("offline", () => {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+// ---------- Auto-load last city on page open ----------
+window.addEventListener("load", () => {
+  if (recentSearches.length > 0) {
+    fetchByCity(recentSearches[0]);
+  }
+});
