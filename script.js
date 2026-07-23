@@ -682,3 +682,13 @@ function getLocalDate(dt, timezoneOffsetSeconds) {
     timeZone: "UTC",
   });
 }
+// ---------- Refresh on tab refocus ----------
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && lastCurrentData) {
+    const timeSinceUpdate = Date.now() - (lastUpdatedAt || 0);
+    if (timeSinceUpdate > 5 * 60 * 1000) {
+      const { lat, lon } = lastCurrentData.coord;
+      fetchByCoords(lat, lon);
+    }
+  }
+});
