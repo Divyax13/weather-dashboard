@@ -692,3 +692,14 @@ document.addEventListener("visibilitychange", () => {
     }
   }
 });
+// ---------- Top loading progress bar ----------
+const progressBar = document.getElementById("progressBar");
+
+function startProgress() {
+  progressBar.classList.remove("done");
+  progressBar.classList.add("active");
+}
+function finishProgress() {
+  progressBar.classList.remove("active");
+  progressBar.classList.add("done");
+}
